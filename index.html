@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Foto Tamu Pernikahan</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f8f5f0;
+      font-family: Arial, sans-serif;
+      color: #3b332c;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      padding: 25px 16px 35px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 5px 0 5px;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      margin-bottom: 20px;
+      color: #766b62;
+      font-size: 14px;
+    }
+
+    .camera-box {
+      width: 100%;
+      background: #111;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    }
+
+    video {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      display: block;
+      object-fit: cover;
+      background: #111;
+    }
+
+    .status {
+      min-height: 25px;
+      margin: 14px 0;
+      font-size: 14px;
+      color: #766b62;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #8d6e63;
+      color: white;
+    }
+
+    button:disabled {
+      opacity: .5;
+    }
+
+    .secondary {
+      margin-top: 10px;
+      background: #ded5cd;
+      color: #4d433c;
+    }
+
+    .preview {
+      display: none;
+      margin-top: 15px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .preview img {
+      width: 100%;
+      display: block;
+    }
+
+    .success {
+      display: none;
+      padding: 25px 10px;
+    }
+
+    .success h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .success p {
+      color: #766b62;
+      line-height: 1.5;
+    }
+
+    .small {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #91867d;
+    }
+
+    #uploadFrame {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Wahyu &amp; Pasangan</h1>
+
+  <div class="subtitle">
+    Abadikan momen bersama kami ❤️
+  </div>
+
+  <div id="cameraArea">
+
+    <div class="camera-box">
+      <video id="video" autoplay playsinline muted></video>
+    </div>
+
+    <div id="status" class="status">
+      Meminta izin kamera...
+    </div>
+
+    <button id="captureBtn" disabled>
+      📷 AMBIL FOTO
+    </button>
+
+    <button id="retakeBtn"
+            class="secondary"
+            style="display:none;">
+      ↻ FOTO ULANG
+    </button>
+
+    <div id="preview" class="preview">
+      <img id="previewImg">
+    </div>
+
+  </div>
+
+  <div id="success" class="success">
+
+    <h2>✓ Foto berhasil disimpan!</h2>
+
+    <p>
+      Terima kasih sudah mengabadikan
+      momen bersama kami ❤️
+    </p>
+
+    <button id="againBtn">
+      📷 AMBIL FOTO LAGI
+    </button>
+
+  </div>
+
+  <div class="small">
+    Foto akan otomatis disimpan ke galeri acara.
+  </div>
+
+</div>
+
+<canvas id="canvas" style="display:none;"></canvas>
+
+<iframe
+  id="uploadFrame"
+  name="uploadFrame">
+</iframe>
+
+<form
+  id="uploadForm"
+  method="POST"
+  target="uploadFrame"
+  enctype="application/x-www-form-urlencoded"
+  style="display:none;">
+
+  <input
+    type="hidden"
+    name="photo"
+    id="photoInput">
+
+  <input
+    type="hidden"
+    name="fileName"
+    id="fileNameInput">
+
+</form>
+
+<script>
+
+  /*
+   * URL GOOGLE APPS SCRIPT
+   */
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbz5WbP-XGFmFtrkOFqmn2W3cRoJsLF6ZB8ibwM_yseYepmT5ypUfjN4WKnyf02fCgn_EA/exec";
+
+
+  const video =
+    document.getElementById("video");
+
+  const canvas =
+    document.getElementById("canvas");
+
+  const captureBtn =
+    document.getElementById("captureBtn");
+
+  const retakeBtn =
+    document.getElementById("retakeBtn");
+
+  const againBtn =
+    document.getElementById("againBtn");
+
+  const statusEl =
+    document.getElementById("status");
+
+  const preview =
+    document.getElementById("preview");
+
+  const previewImg =
+    document.getElementById("previewImg");
+
+  const success =
+    document.getElementById("success");
+
+  const cameraArea =
+    document.getElementById("cameraArea");
+
+  const uploadForm =
+    document.getElementById("uploadForm");
+
+  const photoInput =
+    document.getElementById("photoInput");
+
+  const fileNameInput =
+    document.getElementById("fileNameInput");
+
+  const uploadFrame =
+    document.getElementById("uploadFrame");
+
+
+  let stream = null;
+
+
+  /*
+   * Arahkan form upload ke Apps Script
+   */
+  uploadForm.action = APPS_SCRIPT_URL;
+
+
+  /*
+   * MEMBUKA KAMERA
+   */
+  async function startCamera() {
+
+    try {
+
+      if (!navigator.mediaDevices ||
+          !navigator.mediaDevices.getUserMedia) {
+
+        throw new Error(
+          "Browser tidak mendukung kamera."
+        );
+      }
+
+      statusEl.textContent =
+        "Meminta izin kamera...";
+
+      stream =
+        await navigator.mediaDevices.getUserMedia({
+
+          video: {
+            facingMode: {
+              ideal: "environment"
+            },
+
+            width: {
+              ideal: 1280
+            },
+
+            height: {
+              ideal: 1706
+            }
+          },
+
+          audio: false
+
+        });
+
+
+      video.srcObject = stream;
+
+      await video.play();
+
+
+      captureBtn.disabled = false;
+
+      statusEl.textContent =
+        "Kamera siap. Silakan ambil foto.";
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      statusEl.innerHTML =
+        "❌ Kamera belum diizinkan.<br>" +
+        "Silakan tekan Izinkan kamera pada browser.";
+
+      captureBtn.disabled = true;
+
+    }
+
+  }
+
+
+  /*
+   * MEMBUAT NAMA FILE
+   */
+  function createFileName() {
+
+    const now = new Date();
+
+    const pad =
+      number =>
+      String(number).padStart(2, "0");
+
+    const date =
+      now.getFullYear() +
+      pad(now.getMonth() + 1) +
+      pad(now.getDate());
+
+    const time =
+      pad(now.getHours()) +
+      pad(now.getMinutes()) +
+      pad(now.getSeconds());
+
+    const random =
+      Math.random()
+        .toString(36)
+        .substring(2, 8);
+
+    return (
+      "foto_tamu_" +
+      date +
+      "_" +
+      time +
+      "_" +
+      random +
+      ".jpg"
+    );
+
+  }
+
+
+  /*
+   * AMBIL FOTO
+   */
+  captureBtn.addEventListener(
+    "click",
+    function() {
+
+      if (
+        !video.videoWidth ||
+        !video.videoHeight
+      ) {
+
+        statusEl.textContent =
+          "Kamera belum siap.";
+
+        return;
+
+      }
+
+
+      /*
+       * Batasi ukuran agar upload cepat
+       */
+      const maxWidth = 1280;
+
+      const scale =
+        Math.min(
+          1,
+          maxWidth / video.videoWidth
+        );
+
+
+      canvas.width =
+        Math.round(
+          video.videoWidth * scale
+        );
+
+      canvas.height =
+        Math.round(
+          video.videoHeight * scale
+        );
+
+
+      const context =
+        canvas.getContext("2d");
+
+
+      context.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+
+      /*
+       * Kompres JPEG
+       */
+      const dataUrl =
+        canvas.toDataURL(
+          "image/jpeg",
+          0.82
+        );
+
+
+      /*
+       * Tampilkan preview
+       */
+      previewImg.src =
+        dataUrl;
+
+      preview.style.display =
+        "block";
+
+
+      /*
+       * Siapkan upload
+       */
+      photoInput.value =
+        dataUrl;
+
+      fileNameInput.value =
+        createFileName();
+
+
+      captureBtn.disabled =
+        true;
+
+      retakeBtn.style.display =
+        "block";
+
+      statusEl.textContent =
+        "Mengupload foto...";
+
+
+      /*
+       * Kirim ke Google Apps Script
+       */
+      uploadForm.submit();
+
+
+      /*
+       * Tunggu respons Apps Script
+       */
+      uploadFrame.onload =
+        function() {
+
+          statusEl.textContent =
+            "";
+
+          cameraArea.style.display =
+            "none";
+
+          success.style.display =
+            "block";
+
+        };
+
+    }
+  );
+
+
+  /*
+   * FOTO ULANG
+   */
+  retakeBtn.addEventListener(
+    "click",
+    function() {
+
+      preview.style.display =
+        "none";
+
+      retakeBtn.style.display =
+        "none";
+
+      captureBtn.disabled =
+        false;
+
+      statusEl.textContent =
+        "Silakan ambil foto lagi.";
+
+    }
+  );
+
+
+  /*
+   * FOTO LAGI
+   */
+  againBtn.addEventListener(
+    "click",
+    function() {
+
+      success.style.display =
+        "none";
+
+      cameraArea.style.display =
+        "block";
+
+      captureBtn.style.display =
+        "block";
+
+      captureBtn.disabled =
+        false;
+
+      preview.style.display =
+        "none";
+
+      statusEl.textContent =
+        "Kamera siap. Silakan ambil foto.";
+
+    }
+  );
+
+
+  /*
+   * MATIKAN KAMERA SAAT HALAMAN DITUTUP
+   */
+  window.addEventListener(
+    "beforeunload",
+    function() {
+
+      if (stream) {
+
+        stream
+          .getTracks()
+          .forEach(
+            track =>
+            track.stop()
+          );
+
+      }
+
+    }
+  );
+
+
+  /*
+   * MULAI KAMERA
+   */
+  startCamera();
+
+</script>
+
+</body>
+</html>
