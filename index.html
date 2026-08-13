@@ -10,7 +10,6 @@
 
 <title>Wahyu & Arlina | Foto Tamu</title>
 
-
 <style>
 
 /* =====================================================
@@ -26,22 +25,20 @@ html {
 }
 
 body {
-
   margin: 0;
-
   min-height: 100vh;
 
   background:
     radial-gradient(
       circle at 50% -10%,
-      rgba(255,255,255,.95),
-      transparent 40%
+      rgba(255,255,255,.98),
+      transparent 42%
     ),
     linear-gradient(
       180deg,
       #fdfaf7 0%,
       #f7f0eb 55%,
-      #f2e8e1 100%
+      #f1e7e0 100%
     );
 
   font-family:
@@ -50,7 +47,6 @@ body {
     sans-serif;
 
   color: #493c36;
-
 }
 
 
@@ -59,18 +55,11 @@ body {
    ===================================================== */
 
 .container {
-
   width: 100%;
-
   max-width: 620px;
-
   margin: auto;
-
-  padding:
-    34px 17px 55px;
-
+  padding: 32px 16px 55px;
   text-align: center;
-
 }
 
 
@@ -79,48 +68,35 @@ body {
    ===================================================== */
 
 .header {
-
-  margin-bottom: 25px;
-
+  margin-bottom: 24px;
 }
 
 .eyebrow {
-
   display: inline-flex;
-
   align-items: center;
-
   gap: 9px;
 
   color: #a18472;
 
-  font-size: 11px;
-
+  font-size: 10px;
   font-weight: 600;
-
   letter-spacing: 2.5px;
-
   text-transform: uppercase;
 
-  margin-bottom: 9px;
-
+  margin-bottom: 8px;
 }
 
 .eyebrow::before,
 .eyebrow::after {
-
   content: "";
 
   width: 25px;
-
   height: 1px;
 
   background: #c9ad9b;
-
 }
 
 h1 {
-
   margin: 0;
 
   font-family:
@@ -128,57 +104,34 @@ h1 {
     "Times New Roman",
     serif;
 
-  font-size: clamp(34px, 8vw, 46px);
-
+  font-size: clamp(35px, 8vw, 46px);
   font-weight: 400;
-
   letter-spacing: -.7px;
 
   color: #5c473e;
-
 }
 
 .subtitle {
-
-  margin:
-    10px 0 0;
+  margin-top: 9px;
 
   color: #907c70;
 
-  font-family:
-    Georgia,
-    serif;
-
+  font-family: Georgia, serif;
   font-size: 15px;
-
   font-style: italic;
-
 }
 
-
-/* =====================================================
-   ORNAMEN
-   ===================================================== */
-
 .ornament {
-
-  margin:
-    18px auto 0;
+  margin: 17px auto 0;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 9px;
-
 }
 
 .ornament-line {
-
   width: 45px;
-
   height: 1px;
 
   background:
@@ -187,26 +140,20 @@ h1 {
       transparent,
       #c8aa96
     );
-
 }
 
 .ornament-line.right {
-
   background:
     linear-gradient(
       90deg,
       #c8aa96,
       transparent
     );
-
 }
 
 .ornament-heart {
-
   color: #a97c70;
-
-  font-size: 13px;
-
+  font-size: 14px;
 }
 
 
@@ -215,7 +162,6 @@ h1 {
    ===================================================== */
 
 .camera-card {
-
   padding: 9px;
 
   border-radius: 28px;
@@ -231,29 +177,35 @@ h1 {
     0 18px 50px
     rgba(105,75,60,.13);
 
-  backdrop-filter:
-    blur(12px);
-
+  backdrop-filter: blur(12px);
 }
 
 
-.camera-box {
+/* =====================================================
+   VIDEO
+   ===================================================== */
 
+.camera-box {
   position: relative;
 
   overflow: hidden;
 
   border-radius: 21px;
 
-  background: #1b1715;
-
+  background: #111;
 }
 
+video {
+  width: 100%;
 
-/* sudut kamera */
+  aspect-ratio: 3 / 4;
+
+  object-fit: cover;
+
+  display: block;
+}
 
 .camera-box::after {
-
   content: "";
 
   position: absolute;
@@ -267,237 +219,214 @@ h1 {
   box-shadow:
     inset 0 0 0 1px
     rgba(255,255,255,.12);
-
-}
-
-
-video {
-
-  width: 100%;
-
-  aspect-ratio: 3 / 4;
-
-  object-fit: cover;
-
-  display: block;
-
 }
 
 
 /* =====================================================
-   STATUS KAMERA
+   STATUS
    ===================================================== */
 
 .status {
+  min-height: 21px;
 
-  min-height: 22px;
-
-  margin:
-    13px 0 12px;
+  margin: 12px 0 7px;
 
   color: #89776d;
 
   font-size: 13px;
-
 }
 
 
 /* =====================================================
-   PILIH KAMERA
+   CAMERA CONTROLS
+   GAYA ANDROID / IOS
    ===================================================== */
 
-.camera-switch {
-
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap: 8px;
-
-}
-
-
-.switch-btn {
-
-  min-height: 44px;
-
-  border:
-    1px solid
-    #ddcdc2;
-
-  border-radius: 14px;
-
-  background:
-    rgba(249,244,240,.95);
-
-  color: #705e54;
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  letter-spacing: .2px;
-
-  cursor: pointer;
-
-  transition:
-    all .2s ease;
-
-}
-
-.switch-btn:hover {
-
-  background: #f1e6de;
-
-  border-color: #cdb0a0;
-
-}
-
-.switch-btn:active {
-
-  transform: scale(.97);
-
-}
-
-
-/* =====================================================
-   TOMBOL UTAMA
-   ===================================================== */
-
-.capture-btn {
-
+.camera-controls {
   position: relative;
 
-  width: 100%;
-
-  min-height: 62px;
-
-  margin-top: 10px;
-
-  border: none;
-
-  border-radius: 17px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #7c5a4e 0%,
-      #9e7767 50%,
-      #765448 100%
-    );
-
-  color: #fff;
-
-  font-size: 15px;
-
-  font-weight: 700;
-
-  letter-spacing: 1.2px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 10px 25px
-    rgba(115,78,64,.25);
-
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    opacity .18s ease;
-
-  overflow: hidden;
-
-}
-
-
-/* efek kilau */
-
-.capture-btn::before {
-
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-
-  left: -100%;
-
-  width: 70%;
-
-  height: 100%;
-
-  background:
-    linear-gradient(
-      100deg,
-      transparent,
-      rgba(255,255,255,.18),
-      transparent
-    );
-
-  transition:
-    left .55s ease;
-
-}
-
-.capture-btn:hover::before {
-
-  left: 140%;
-
-}
-
-.capture-btn:hover {
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 14px 30px
-    rgba(115,78,64,.32);
-
-}
-
-.capture-btn:active {
-
-  transform:
-    scale(.98);
-
-}
-
-.capture-btn:disabled {
-
-  opacity: .45;
-
-  cursor: not-allowed;
-
-  transform: none;
-
-}
-
-
-/* icon */
-
-.camera-icon {
-
-  display: inline-flex;
+  display: flex;
 
   align-items: center;
 
   justify-content: center;
 
-  width: 32px;
+  min-height: 108px;
 
-  height: 32px;
+  margin-top: 2px;
+}
 
-  margin-right: 8px;
+
+/* =====================================================
+   TOMBOL KAMERA DEPAN / BELAKANG
+   ===================================================== */
+
+.camera-mode {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 48px;
+  height: 48px;
+
+  padding: 0;
+
+  border: none;
 
   border-radius: 50%;
 
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
   background:
-    rgba(255,255,255,.14);
+    rgba(236,226,219,.95);
 
-  vertical-align: middle;
+  color: #66544b;
 
+  box-shadow:
+    0 4px 13px
+    rgba(70,50,40,.12);
+
+  cursor: pointer;
+
+  transition:
+    all .2s ease;
+}
+
+.camera-mode.left {
+  left: 12px;
+}
+
+.camera-mode.right {
+  right: 12px;
+}
+
+.camera-mode:hover {
+  transform:
+    translateY(-50%)
+    scale(1.05);
+}
+
+.camera-mode:active {
+  transform:
+    translateY(-50%)
+    scale(.91);
+}
+
+
+/* SVG icon */
+
+.camera-mode svg {
+  width: 22px;
+  height: 22px;
+}
+
+
+/* kamera aktif */
+
+.camera-mode.active {
+  background:
+    #7d5d51;
+
+  color: #fff;
+
+  box-shadow:
+    0 6px 16px
+    rgba(100,70,55,.25);
+}
+
+
+/* =====================================================
+   TOMBOL SHUTTER
+   SEPERTI ANDROID / IOS
+   ===================================================== */
+
+.capture-btn {
+  position: relative;
+
+  width: 82px;
+  height: 82px;
+
+  padding: 0;
+
+  border-radius: 50%;
+
+  border:
+    4px solid
+    rgba(255,255,255,.98);
+
+  background:
+    transparent;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 18px
+    rgba(60,45,38,.25);
+
+  transition:
+    transform .13s ease,
+    box-shadow .13s ease,
+    opacity .2s ease;
+}
+
+
+/* bagian putih dalam */
+
+.shutter-inner {
+  width: 64px;
+  height: 64px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(90,70,60,.08);
+
+  transition:
+    transform .12s ease;
+}
+
+
+/* efek sentuh */
+
+.capture-btn:hover {
+  transform: scale(1.04);
+
+  box-shadow:
+    0 7px 23px
+    rgba(60,45,38,.30);
+}
+
+.capture-btn:active {
+  transform: scale(.91);
+}
+
+.capture-btn:active .shutter-inner {
+  transform: scale(.88);
+}
+
+.capture-btn:disabled {
+  opacity: .45;
+
+  cursor: not-allowed;
+
+  transform: none;
 }
 
 
@@ -506,16 +435,12 @@ video {
    ===================================================== */
 
 .preview-section {
-
   display: none;
 
   margin-top: 22px;
-
 }
 
-
 .preview-card {
-
   padding: 9px;
 
   border-radius: 28px;
@@ -530,48 +455,33 @@ video {
   box-shadow:
     0 18px 50px
     rgba(105,75,60,.13);
-
 }
 
-
 .preview-title {
-
   padding:
     8px 4px 14px;
 
   color: #5e4a41;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 20px;
-
 }
 
-
 .preview-box {
-
   overflow: hidden;
 
   border-radius: 20px;
 
   background: #161311;
-
 }
-
 
 .preview-box img {
-
   width: 100%;
-
   display: block;
-
 }
 
-
 .upload-status {
-
   margin:
     14px 5px 0;
 
@@ -580,12 +490,9 @@ video {
   color: #88766c;
 
   font-size: 13px;
-
 }
 
-
 .success {
-
   display: none;
 
   margin:
@@ -607,12 +514,14 @@ video {
   font-size: 13px;
 
   font-weight: 600;
-
 }
 
 
-.secondary {
+/* =====================================================
+   FOTO ULANG
+   ===================================================== */
 
+.secondary {
   width: 100%;
 
   min-height: 48px;
@@ -639,19 +548,14 @@ video {
   cursor: pointer;
 
   transition: all .2s ease;
-
 }
 
 .secondary:hover {
-
   background: #eaded6;
-
 }
 
 .secondary:active {
-
   transform: scale(.98);
-
 }
 
 
@@ -660,7 +564,6 @@ video {
    ===================================================== */
 
 .gallery-section {
-
   margin-top: 48px;
 
   padding-top: 30px;
@@ -668,57 +571,40 @@ video {
   border-top:
     1px solid
     rgba(190,160,140,.4);
-
 }
-
 
 .gallery-heading {
-
   margin-bottom: 19px;
-
 }
 
-
 .gallery-title {
-
   color: #5c473e;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 25px;
 
   font-weight: 400;
-
 }
 
-
 .gallery-subtitle {
-
   margin-top: 7px;
 
   color: #907d72;
 
   font-size: 13px;
-
 }
 
-
 .gallery {
-
   display: grid;
 
   grid-template-columns:
     repeat(2, 1fr);
 
   gap: 9px;
-
 }
 
-
 .gallery-item {
-
   position: relative;
 
   overflow: hidden;
@@ -734,14 +620,10 @@ video {
   box-shadow:
     0 5px 16px
     rgba(90,65,55,.10);
-
 }
 
-
 .gallery-item img {
-
   width: 100%;
-
   height: 100%;
 
   display: block;
@@ -750,22 +632,14 @@ video {
 
   transition:
     transform .3s ease;
-
 }
-
 
 .gallery-item:hover img {
-
-  transform:
-    scale(1.045);
-
+  transform: scale(1.045);
 }
 
-
 .gallery-empty {
-
-  grid-column:
-    1 / -1;
+  grid-column: 1 / -1;
 
   padding: 34px 15px;
 
@@ -781,18 +655,14 @@ video {
   color: #897970;
 
   font-size: 13px;
-
 }
 
-
 .refresh-btn {
-
   margin-top: 17px;
 
   min-height: 43px;
 
-  padding:
-    0 20px;
+  padding: 0 20px;
 
   border:
     1px solid
@@ -800,8 +670,7 @@ video {
 
   border-radius: 13px;
 
-  background:
-    transparent;
+  background: transparent;
 
   color: #756258;
 
@@ -812,15 +681,6 @@ video {
   letter-spacing: .4px;
 
   cursor: pointer;
-
-}
-
-
-.refresh-btn:hover {
-
-  background:
-    rgba(255,255,255,.55);
-
 }
 
 
@@ -829,19 +689,15 @@ video {
    ===================================================== */
 
 .small {
-
   margin-top: 25px;
 
   color: #a18f85;
 
-  font-family:
-    Georgia,
-    serif;
+  font-family: Georgia, serif;
 
   font-size: 12px;
 
   font-style: italic;
-
 }
 
 
@@ -850,50 +706,11 @@ video {
    ===================================================== */
 
 #uploadFrame {
-
   display: none;
-
 }
 
 canvas {
-
   display: none;
-
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 380px) {
-
-  .container {
-
-    padding-left: 12px;
-
-    padding-right: 12px;
-
-  }
-
-  h1 {
-
-    font-size: 32px;
-
-  }
-
-  .camera-switch {
-
-    gap: 6px;
-
-  }
-
-  .switch-btn {
-
-    font-size: 12px;
-
-  }
-
 }
 
 
@@ -904,10 +721,39 @@ canvas {
 @media (min-width: 700px) {
 
   .gallery {
-
     grid-template-columns:
       repeat(3, 1fr);
+  }
 
+}
+
+
+/* =====================================================
+   HP KECIL
+   ===================================================== */
+
+@media (max-width: 380px) {
+
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .camera-mode {
+    width: 44px;
+    height: 44px;
+  }
+
+  .camera-mode.left {
+    left: 7px;
+  }
+
+  .camera-mode.right {
+    right: 7px;
   }
 
 }
@@ -923,233 +769,276 @@ canvas {
 <div class="container">
 
 
-  <!-- =================================================
-       HEADER
-       ================================================= -->
+<!-- ===================================================
+     HEADER
+     =================================================== -->
 
-  <header class="header">
+<header class="header">
 
-    <div class="eyebrow">
-      Wedding Guest Photo
-    </div>
+  <div class="eyebrow">
+    Wedding Guest Photo
+  </div>
 
-    <h1>
-      Wahyu &amp; Arlina
-    </h1>
+  <h1>
+    Wahyu &amp; Arlina
+  </h1>
 
-    <div class="subtitle">
-      Abadikan momen indah bersama kami
-    </div>
+  <div class="subtitle">
+    Abadikan momen indah bersama kami
+  </div>
 
-    <div class="ornament">
+  <div class="ornament">
 
-      <span class="ornament-line"></span>
+    <span class="ornament-line"></span>
 
-      <span class="ornament-heart">♡</span>
+    <span class="ornament-heart">♡</span>
 
-      <span class="ornament-line right"></span>
-
-    </div>
-
-  </header>
-
-
-  <!-- =================================================
-       CAMERA
-       ================================================= -->
-
-  <div id="cameraArea">
-
-    <div class="camera-card">
-
-      <div class="camera-box">
-
-        <video
-          id="video"
-          autoplay
-          playsinline
-          muted>
-        </video>
-
-      </div>
-
-
-      <div
-        id="status"
-        class="status">
-
-        Meminta izin kamera...
-
-      </div>
-
-
-      <div class="camera-switch">
-
-        <button
-          id="frontBtn"
-          class="switch-btn">
-
-          🤳 &nbsp; Kamera Depan
-
-        </button>
-
-
-        <button
-          id="backBtn"
-          class="switch-btn">
-
-          📷 &nbsp; Kamera Belakang
-
-        </button>
-
-      </div>
-
-
-      <button
-        id="captureBtn"
-        class="capture-btn"
-        disabled>
-
-        <span class="camera-icon">
-          📷
-        </span>
-
-        ABADIKAN MOMEN
-
-      </button>
-
-    </div>
+    <span class="ornament-line right"></span>
 
   </div>
 
-
-  <!-- =================================================
-       PREVIEW
-       ================================================= -->
-
-  <div
-    id="previewSection"
-    class="preview-section">
+</header>
 
 
-    <div class="preview-card">
+<!-- ===================================================
+     CAMERA
+     =================================================== -->
 
+<div id="cameraArea">
 
-      <div class="preview-title">
+  <div class="camera-card">
 
-        Hasil Foto Anda
+    <div class="camera-box">
 
-      </div>
-
-
-      <div class="preview-box">
-
-        <img
-          id="previewImg"
-          alt="Hasil foto">
-
-      </div>
-
-
-      <div
-        id="uploadStatus"
-        class="upload-status">
-
-        ⏳ Mengirim foto ke galeri acara...
-
-      </div>
-
-
-      <div
-        id="success"
-        class="success">
-
-        ✓ Foto berhasil disimpan ke galeri acara ❤️
-
-      </div>
-
-
-      <button
-        id="retakeBtn"
-        class="secondary">
-
-        ↻ &nbsp; AMBIL FOTO LAGI
-
-      </button>
-
-
-    </div>
-
-  </div>
-
-
-  <!-- =================================================
-       GALERI
-       ================================================= -->
-
-  <section class="gallery-section">
-
-
-    <div class="gallery-heading">
-
-      <div class="gallery-title">
-
-        Galeri Tamu
-
-      </div>
-
-
-      <div class="gallery-subtitle">
-
-        Momen indah yang dibagikan oleh para tamu ❤️
-
-      </div>
+      <video
+        id="video"
+        autoplay
+        playsinline
+        muted>
+      </video>
 
     </div>
 
 
     <div
-      id="gallery"
-      class="gallery">
+      id="status"
+      class="status">
 
-      <div class="gallery-empty">
+      Meminta izin kamera...
 
-        ⏳ Memuat foto tamu...
+    </div>
 
-      </div>
+
+    <!-- CAMERA CONTROLS -->
+
+    <div class="camera-controls">
+
+
+      <!-- KAMERA DEPAN -->
+
+      <button
+        id="frontBtn"
+        class="camera-mode left"
+        aria-label="Kamera depan"
+        title="Kamera depan">
+
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+
+          <path
+            d="M9 3h6l1.5 3H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.5L9 3z"/>
+
+          <circle
+            cx="12"
+            cy="13"
+            r="3.5"/>
+
+        </svg>
+
+      </button>
+
+
+      <!-- SHUTTER -->
+
+      <button
+        id="captureBtn"
+        class="capture-btn"
+        aria-label="Ambil foto"
+        disabled>
+
+        <span
+          class="shutter-inner">
+        </span>
+
+      </button>
+
+
+      <!-- KAMERA BELAKANG -->
+
+      <button
+        id="backBtn"
+        class="camera-mode right"
+        aria-label="Kamera belakang"
+        title="Kamera belakang">
+
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+
+          <path
+            d="M9 3h6l1.5 3H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.5L9 3z"/>
+
+          <circle
+            cx="12"
+            cy="13"
+            r="3.5"/>
+
+          <circle
+            cx="17.5"
+            cy="9"
+            r=".8"
+            fill="currentColor"/>
+
+        </svg>
+
+      </button>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ===================================================
+     PREVIEW
+     =================================================== -->
+
+<div
+  id="previewSection"
+  class="preview-section">
+
+  <div class="preview-card">
+
+    <div class="preview-title">
+      Hasil Foto Anda
+    </div>
+
+
+    <div class="preview-box">
+
+      <img
+        id="previewImg"
+        alt="Hasil foto">
+
+    </div>
+
+
+    <div
+      id="uploadStatus"
+      class="upload-status">
+
+      ⏳ Mengirim foto ke galeri acara...
+
+    </div>
+
+
+    <div
+      id="success"
+      class="success">
+
+      ✓ Foto berhasil disimpan ke galeri acara ❤️
 
     </div>
 
 
     <button
-      id="refreshGallery"
-      class="refresh-btn">
+      id="retakeBtn"
+      class="secondary">
 
-      ↻ &nbsp; MUAT ULANG GALERI
+      ↻ &nbsp; AMBIL FOTO LAGI
 
     </button>
 
+  </div>
 
-  </section>
+</div>
 
 
-  <div class="small">
+<!-- ===================================================
+     GALERI
+     =================================================== -->
 
-    Terima kasih telah menjadi bagian
-    dari hari istimewa kami.
+<section class="gallery-section">
+
+  <div class="gallery-heading">
+
+    <div class="gallery-title">
+      Galeri Tamu
+    </div>
+
+    <div class="gallery-subtitle">
+      Momen indah yang dibagikan oleh para tamu ❤️
+    </div>
 
   </div>
+
+
+  <div
+    id="gallery"
+    class="gallery">
+
+    <div class="gallery-empty">
+      ⏳ Memuat foto tamu...
+    </div>
+
+  </div>
+
+
+  <button
+    id="refreshGallery"
+    class="refresh-btn">
+
+    ↻ &nbsp; MUAT ULANG GALERI
+
+  </button>
+
+</section>
+
+
+<div class="small">
+
+  Terima kasih telah menjadi bagian
+  dari hari istimewa kami.
+
+</div>
 
 
 </div>
 
 
+<!-- ===================================================
+     CANVAS
+     =================================================== -->
+
 <canvas id="canvas"></canvas>
 
 
-<!-- =====================================================
-     FORM UPLOAD
-     ===================================================== -->
+<!-- ===================================================
+     UPLOAD FORM
+     =================================================== -->
 
 <iframe
   id="uploadFrame"
@@ -1252,7 +1141,7 @@ APPS_SCRIPT_URL;
 
 
 /* =====================================================
-   VARIABEL KAMERA
+   VARIABEL
    ===================================================== */
 
 let stream = null;
@@ -1262,7 +1151,31 @@ let currentCamera =
 
 
 /* =====================================================
-   MULAI KAMERA
+   UPDATE TOMBOL KAMERA AKTIF
+   ===================================================== */
+
+function updateCameraButtons() {
+
+  frontBtn.classList.remove("active");
+
+  backBtn.classList.remove("active");
+
+
+  if (currentCamera === "user") {
+
+    frontBtn.classList.add("active");
+
+  } else {
+
+    backBtn.classList.add("active");
+
+  }
+
+}
+
+
+/* =====================================================
+   START CAMERA
    ===================================================== */
 
 async function startCamera(cameraMode) {
@@ -1291,6 +1204,9 @@ async function startCamera(cameraMode) {
 
     currentCamera =
       cameraMode;
+
+
+    updateCameraButtons();
 
 
     try {
@@ -1356,9 +1272,9 @@ async function startCamera(cameraMode) {
     statusEl.textContent =
       cameraMode === "user"
 
-      ? "🤳 Kamera depan siap."
+      ? "Kamera depan siap"
 
-      : "📷 Kamera belakang siap.";
+      : "Kamera belakang siap";
 
   }
 
@@ -1371,6 +1287,7 @@ async function startCamera(cameraMode) {
     statusEl.innerHTML =
       "❌ Kamera tidak dapat digunakan.<br>" +
       "Pastikan izin kamera sudah diberikan.";
+
 
     captureBtn.disabled =
       true;
@@ -1486,7 +1403,7 @@ captureBtn.addEventListener(
 
 
     /*
-     * Kamera depan mirror
+     * Kamera depan dibuat mirror
      */
 
     if (
@@ -1540,7 +1457,7 @@ captureBtn.addEventListener(
 
 
     /*
-     * Tampilkan hasil foto
+     * Tampilkan hasil
      */
 
     previewImg.src =
@@ -1564,7 +1481,7 @@ captureBtn.addEventListener(
 
 
     /*
-     * Upload ke Google Drive
+     * Upload
      */
 
     photoInput.value =
@@ -1582,7 +1499,7 @@ captureBtn.addEventListener(
 
 
 /* =====================================================
-   HASIL UPLOAD
+   UPLOAD SELESAI
    ===================================================== */
 
 const uploadFrame =
@@ -1618,7 +1535,13 @@ frontBtn.addEventListener(
   "click",
   function() {
 
-    startCamera("user");
+    if (
+      currentCamera !== "user"
+    ) {
+
+      startCamera("user");
+
+    }
 
   }
 );
@@ -1632,7 +1555,13 @@ backBtn.addEventListener(
   "click",
   function() {
 
-    startCamera("environment");
+    if (
+      currentCamera !== "environment"
+    ) {
+
+      startCamera("environment");
+
+    }
 
   }
 );
@@ -1645,7 +1574,6 @@ backBtn.addEventListener(
 retakeBtn.addEventListener(
   "click",
   function() {
-
 
     previewSection.style.display =
       "none";
@@ -1676,7 +1604,7 @@ function loadGallery() {
 
   gallery.innerHTML =
     '<div class="gallery-empty">' +
-    '⏳ Memuat galeri...' +
+    '⏳ Memuat foto tamu...' +
     '</div>';
 
 
@@ -1841,7 +1769,7 @@ refreshGallery.addEventListener(
 
 
 /* =====================================================
-   MATIKAN KAMERA SAAT KELUAR
+   MATIKAN KAMERA
    ===================================================== */
 
 window.addEventListener(
@@ -1870,12 +1798,10 @@ startCamera(
   "environment"
 );
 
-
 loadGallery();
 
 
 </script>
-
 
 </body>
 
