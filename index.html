@@ -182,7 +182,7 @@ h1 {
 
 
 /* =====================================================
-   VIDEO
+   VIDEO 9:16
    ===================================================== */
 
 .camera-box {
@@ -198,7 +198,7 @@ h1 {
 video {
   width: 100%;
 
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 9 / 16;
 
   object-fit: cover;
 
@@ -239,7 +239,6 @@ video {
 
 /* =====================================================
    CAMERA CONTROLS
-   GAYA ANDROID / IOS
    ===================================================== */
 
 .camera-controls {
@@ -318,16 +317,10 @@ video {
     scale(.91);
 }
 
-
-/* SVG icon */
-
 .camera-mode svg {
   width: 22px;
   height: 22px;
 }
-
-
-/* kamera aktif */
 
 .camera-mode.active {
   background:
@@ -343,7 +336,6 @@ video {
 
 /* =====================================================
    TOMBOL SHUTTER
-   SEPERTI ANDROID / IOS
    ===================================================== */
 
 .capture-btn {
@@ -381,9 +373,6 @@ video {
     opacity .2s ease;
 }
 
-
-/* bagian putih dalam */
-
 .shutter-inner {
   width: 64px;
   height: 64px;
@@ -401,9 +390,6 @@ video {
   transition:
     transform .12s ease;
 }
-
-
-/* efek sentuh */
 
 .capture-btn:hover {
   transform: scale(1.04);
@@ -431,7 +417,7 @@ video {
 
 
 /* =====================================================
-   PREVIEW
+   PREVIEW 9:16
    ===================================================== */
 
 .preview-section {
@@ -474,11 +460,17 @@ video {
   border-radius: 20px;
 
   background: #161311;
+
+  aspect-ratio: 9 / 16;
 }
 
 .preview-box img {
   width: 100%;
+  height: 100%;
+
   display: block;
+
+  object-fit: cover;
 }
 
 .upload-status {
@@ -604,12 +596,15 @@ video {
   gap: 9px;
 }
 
+
+/* GALERI JUGA 9:16 */
+
 .gallery-item {
   position: relative;
 
   overflow: hidden;
 
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 9 / 16;
 
   display: block;
 
@@ -842,7 +837,6 @@ canvas {
         aria-label="Kamera depan"
         title="Kamera depan">
 
-
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -886,7 +880,6 @@ canvas {
         class="camera-mode right"
         aria-label="Kamera belakang"
         title="Kamera belakang">
-
 
         <svg
           viewBox="0 0 24 24"
@@ -1053,18 +1046,15 @@ canvas {
   enctype="application/x-www-form-urlencoded"
   style="display:none;">
 
-
   <input
     type="hidden"
     name="photo"
     id="photoInput">
 
-
   <input
     type="hidden"
     name="fileName"
     id="fileNameInput">
-
 
 </form>
 
@@ -1151,7 +1141,7 @@ let currentCamera =
 
 
 /* =====================================================
-   UPDATE TOMBOL KAMERA AKTIF
+   UPDATE TOMBOL KAMERA
    ===================================================== */
 
 function updateCameraButtons() {
@@ -1161,7 +1151,9 @@ function updateCameraButtons() {
   backBtn.classList.remove("active");
 
 
-  if (currentCamera === "user") {
+  if (
+    currentCamera === "user"
+  ) {
 
     frontBtn.classList.add("active");
 
@@ -1222,11 +1214,11 @@ async function startCamera(cameraMode) {
             },
 
             width: {
-              ideal: 1280
+              ideal: 1080
             },
 
             height: {
-              ideal: 1706
+              ideal: 1920
             }
 
           },
@@ -1352,12 +1344,13 @@ function createFileName() {
 
 /* =====================================================
    AMBIL FOTO
+   HASIL BENAR-BENAR 9:16
+   1080 x 1920
    ===================================================== */
 
 captureBtn.addEventListener(
   "click",
   function() {
-
 
     if (
       !video.videoWidth ||
@@ -1372,30 +1365,108 @@ captureBtn.addEventListener(
     }
 
 
-    const maxWidth =
-      1280;
+    /*
+     * Rasio target
+     * 9 : 16
+     */
+
+    const TARGET_RATIO =
+      9 / 16;
 
 
-    const scale =
-      Math.min(
-        1,
-        maxWidth /
-        video.videoWidth
-      );
+    const videoWidth =
+      video.videoWidth;
+
+    const videoHeight =
+      video.videoHeight;
+
+
+    const videoRatio =
+      videoWidth /
+      videoHeight;
+
+
+    let cropWidth;
+
+    let cropHeight;
+
+    let cropX;
+
+    let cropY;
+
+
+    /*
+     * Jika kamera lebih lebar
+     * daripada 9:16,
+     * potong kiri dan kanan.
+     */
+
+    if (
+      videoRatio > TARGET_RATIO
+    ) {
+
+      cropHeight =
+        videoHeight;
+
+      cropWidth =
+        videoHeight *
+        TARGET_RATIO;
+
+      cropX =
+        (videoWidth -
+         cropWidth) / 2;
+
+      cropY =
+        0;
+
+    }
+
+
+    /*
+     * Jika kamera lebih tinggi
+     * daripada 9:16,
+     * potong atas dan bawah.
+     */
+
+    else {
+
+      cropWidth =
+        videoWidth;
+
+      cropHeight =
+        videoWidth /
+        TARGET_RATIO;
+
+      cropX =
+        0;
+
+      cropY =
+        (videoHeight -
+         cropHeight) / 2;
+
+    }
+
+
+    /*
+     * Resolusi hasil:
+     *
+     * 1080 x 1920
+     *
+     * = rasio 9:16
+     */
+
+    const outputWidth =
+      1080;
+
+    const outputHeight =
+      1920;
 
 
     canvas.width =
-      Math.round(
-        video.videoWidth *
-        scale
-      );
-
+      outputWidth;
 
     canvas.height =
-      Math.round(
-        video.videoHeight *
-        scale
-      );
+      outputHeight;
 
 
     const context =
@@ -1403,7 +1474,8 @@ captureBtn.addEventListener(
 
 
     /*
-     * Kamera depan dibuat mirror
+     * Kamera depan:
+     * mirror seperti selfie HP.
      */
 
     if (
@@ -1412,10 +1484,12 @@ captureBtn.addEventListener(
 
       context.save();
 
+
       context.translate(
-        canvas.width,
+        outputWidth,
         0
       );
+
 
       context.scale(
         -1,
@@ -1424,11 +1498,21 @@ captureBtn.addEventListener(
 
 
       context.drawImage(
+
         video,
+
+        cropX,
+        cropY,
+
+        cropWidth,
+        cropHeight,
+
         0,
         0,
-        canvas.width,
-        canvas.height
+
+        outputWidth,
+        outputHeight
+
       );
 
 
@@ -1436,23 +1520,43 @@ captureBtn.addEventListener(
 
     }
 
+
+    /*
+     * Kamera belakang:
+     * tidak mirror.
+     */
+
     else {
 
       context.drawImage(
+
         video,
+
+        cropX,
+        cropY,
+
+        cropWidth,
+        cropHeight,
+
         0,
         0,
-        canvas.width,
-        canvas.height
+
+        outputWidth,
+        outputHeight
+
       );
 
     }
 
 
+    /*
+     * JPEG kualitas tinggi
+     */
+
     const dataUrl =
       canvas.toDataURL(
         "image/jpeg",
-        0.85
+        0.88
       );
 
 
@@ -1481,7 +1585,7 @@ captureBtn.addEventListener(
 
 
     /*
-     * Upload
+     * Upload ke Google Drive
      */
 
     photoInput.value =
@@ -1601,7 +1705,6 @@ retakeBtn.addEventListener(
 
 function loadGallery() {
 
-
   gallery.innerHTML =
     '<div class="gallery-empty">' +
     '⏳ Memuat foto tamu...' +
@@ -1682,7 +1785,6 @@ function loadGallery() {
 
 function renderGallery(data) {
 
-
   if (
     !Array.isArray(data) ||
     data.length === 0
@@ -1705,7 +1807,6 @@ function renderGallery(data) {
 
   data.forEach(
     function(photo) {
-
 
       const item =
         document.createElement("a");
