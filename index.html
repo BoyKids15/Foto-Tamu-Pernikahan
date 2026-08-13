@@ -8,15 +8,22 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Foto Tamu Pernikahan</title>
+<title>Wahyu & Arlina | Foto Tamu</title>
 
 
 <style>
+
+/* =====================================================
+   DASAR
+   ===================================================== */
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 body {
 
@@ -25,64 +32,210 @@ body {
   min-height: 100vh;
 
   background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(255,255,255,.95),
+      transparent 40%
+    ),
     linear-gradient(
       180deg,
-      #fbf7f3,
-      #f5eee8
+      #fdfaf7 0%,
+      #f7f0eb 55%,
+      #f2e8e1 100%
     );
 
   font-family:
+    "Segoe UI",
     Arial,
     sans-serif;
 
-  color: #403630;
+  color: #493c36;
 
 }
 
+
+/* =====================================================
+   CONTAINER
+   ===================================================== */
 
 .container {
 
   width: 100%;
 
-  max-width: 560px;
+  max-width: 620px;
 
   margin: auto;
 
   padding:
-    28px 16px 50px;
+    34px 17px 55px;
 
   text-align: center;
 
 }
 
 
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.header {
+
+  margin-bottom: 25px;
+
+}
+
+.eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: #a18472;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 2.5px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 9px;
+
+}
+
+.eyebrow::before,
+.eyebrow::after {
+
+  content: "";
+
+  width: 25px;
+
+  height: 1px;
+
+  background: #c9ad9b;
+
+}
+
 h1 {
 
-  margin: 5px 0;
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(34px, 8vw, 46px);
+
+  font-weight: 400;
+
+  letter-spacing: -.7px;
+
+  color: #5c473e;
+
+}
+
+.subtitle {
+
+  margin:
+    10px 0 0;
+
+  color: #907c70;
 
   font-family:
     Georgia,
     serif;
 
-  font-size: 30px;
+  font-size: 15px;
+
+  font-style: italic;
 
 }
 
 
-.subtitle {
+/* =====================================================
+   ORNAMEN
+   ===================================================== */
 
-  color: #85776e;
+.ornament {
 
-  font-size: 14px;
+  margin:
+    18px auto 0;
 
-  margin-bottom: 24px;
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+}
+
+.ornament-line {
+
+  width: 45px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #c8aa96
+    );
+
+}
+
+.ornament-line.right {
+
+  background:
+    linear-gradient(
+      90deg,
+      #c8aa96,
+      transparent
+    );
+
+}
+
+.ornament-heart {
+
+  color: #a97c70;
+
+  font-size: 13px;
 
 }
 
 
-/* =========================
-   CAMERA
-   ========================= */
+/* =====================================================
+   CAMERA CARD
+   ===================================================== */
+
+.camera-card {
+
+  padding: 9px;
+
+  border-radius: 28px;
+
+  background:
+    rgba(255,255,255,.72);
+
+  border:
+    1px solid
+    rgba(190,160,140,.25);
+
+  box-shadow:
+    0 18px 50px
+    rgba(105,75,60,.13);
+
+  backdrop-filter:
+    blur(12px);
+
+}
+
 
 .camera-box {
 
@@ -90,13 +243,30 @@ h1 {
 
   overflow: hidden;
 
-  border-radius: 24px;
+  border-radius: 21px;
 
-  background: #111;
+  background: #1b1715;
+
+}
+
+
+/* sudut kamera */
+
+.camera-box::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  border-radius: 21px;
 
   box-shadow:
-    0 12px 35px
-    rgba(0,0,0,.18);
+    inset 0 0 0 1px
+    rgba(255,255,255,.12);
 
 }
 
@@ -114,122 +284,226 @@ video {
 }
 
 
+/* =====================================================
+   STATUS KAMERA
+   ===================================================== */
+
 .status {
 
-  min-height: 24px;
+  min-height: 22px;
 
-  margin: 14px 0;
+  margin:
+    13px 0 12px;
 
-  font-size: 14px;
+  color: #89776d;
 
-  color: #796d64;
+  font-size: 13px;
 
 }
 
+
+/* =====================================================
+   PILIH KAMERA
+   ===================================================== */
 
 .camera-switch {
 
-  display: flex;
+  display: grid;
 
-  gap: 10px;
+  grid-template-columns:
+    1fr 1fr;
 
-  margin-top: 12px;
-
-}
-
-
-button {
-
-  border: none;
-
-  cursor: pointer;
-
-  font-weight: bold;
-
-  transition:
-    transform .15s,
-    opacity .15s;
-
-}
-
-
-button:active {
-
-  transform: scale(.97);
-
-}
-
-
-button:disabled {
-
-  opacity: .45;
-
-  cursor: not-allowed;
+  gap: 8px;
 
 }
 
 
 .switch-btn {
 
-  flex: 1;
+  min-height: 44px;
 
-  padding: 13px 8px;
+  border:
+    1px solid
+    #ddcdc2;
 
   border-radius: 14px;
 
-  background: #e5dad2;
+  background:
+    rgba(249,244,240,.95);
 
-  color: #54473f;
+  color: #705e54;
 
-  font-size: 14px;
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: .2px;
+
+  cursor: pointer;
+
+  transition:
+    all .2s ease;
+
+}
+
+.switch-btn:hover {
+
+  background: #f1e6de;
+
+  border-color: #cdb0a0;
+
+}
+
+.switch-btn:active {
+
+  transform: scale(.97);
 
 }
 
 
-/* =========================
-   TOMBOL FOTO
-   ========================= */
+/* =====================================================
+   TOMBOL UTAMA
+   ===================================================== */
 
 .capture-btn {
 
+  position: relative;
+
   width: 100%;
 
-  margin-top: 14px;
+  min-height: 62px;
 
-  padding: 18px;
+  margin-top: 10px;
 
-  border-radius: 18px;
+  border: none;
+
+  border-radius: 17px;
 
   background:
     linear-gradient(
       135deg,
-      #9a7667,
-      #755548
+      #7c5a4e 0%,
+      #9e7767 50%,
+      #765448 100%
     );
 
-  color: white;
+  color: #fff;
 
-  font-size: 18px;
+  font-size: 15px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  cursor: pointer;
 
   box-shadow:
-    0 8px 20px
-    rgba(117,85,72,.25);
+    0 10px 25px
+    rgba(115,78,64,.25);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    opacity .18s ease;
+
+  overflow: hidden;
 
 }
 
 
-.capture-btn span {
+/* efek kilau */
 
-  display: inline-block;
+.capture-btn::before {
 
-  margin-right: 6px;
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -100%;
+
+  width: 70%;
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      100deg,
+      transparent,
+      rgba(255,255,255,.18),
+      transparent
+    );
+
+  transition:
+    left .55s ease;
+
+}
+
+.capture-btn:hover::before {
+
+  left: 140%;
+
+}
+
+.capture-btn:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 14px 30px
+    rgba(115,78,64,.32);
+
+}
+
+.capture-btn:active {
+
+  transform:
+    scale(.98);
+
+}
+
+.capture-btn:disabled {
+
+  opacity: .45;
+
+  cursor: not-allowed;
+
+  transform: none;
 
 }
 
 
-/* =========================
+/* icon */
+
+.camera-icon {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 32px;
+
+  height: 32px;
+
+  margin-right: 8px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.14);
+
+  vertical-align: middle;
+
+}
+
+
+/* =====================================================
    PREVIEW
-   ========================= */
+   ===================================================== */
 
 .preview-section {
 
@@ -240,13 +514,38 @@ button:disabled {
 }
 
 
+.preview-card {
+
+  padding: 9px;
+
+  border-radius: 28px;
+
+  background:
+    rgba(255,255,255,.78);
+
+  border:
+    1px solid
+    rgba(190,160,140,.25);
+
+  box-shadow:
+    0 18px 50px
+    rgba(105,75,60,.13);
+
+}
+
+
 .preview-title {
 
-  font-size: 19px;
+  padding:
+    8px 4px 14px;
 
-  font-weight: bold;
+  color: #5e4a41;
 
-  margin-bottom: 12px;
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 20px;
 
 }
 
@@ -255,13 +554,9 @@ button:disabled {
 
   overflow: hidden;
 
-  border-radius: 22px;
+  border-radius: 20px;
 
-  background: #111;
-
-  box-shadow:
-    0 10px 30px
-    rgba(0,0,0,.18);
+  background: #161311;
 
 }
 
@@ -277,11 +572,14 @@ button:disabled {
 
 .upload-status {
 
-  margin-top: 13px;
+  margin:
+    14px 5px 0;
 
-  font-size: 14px;
+  min-height: 20px;
 
-  color: #766960;
+  color: #88766c;
+
+  font-size: 13px;
 
 }
 
@@ -290,17 +588,25 @@ button:disabled {
 
   display: none;
 
-  margin-top: 12px;
+  margin:
+    11px 2px 0;
 
-  padding: 14px;
+  padding: 13px;
 
-  border-radius: 14px;
+  border:
+    1px solid
+    #cfe0d0;
 
-  background: #e7f3e8;
+  border-radius: 13px;
 
-  color: #416c47;
+  background:
+    #eef7ef;
 
-  font-weight: bold;
+  color: #4d7454;
+
+  font-size: 13px;
+
+  font-weight: 600;
 
 }
 
@@ -309,55 +615,92 @@ button:disabled {
 
   width: 100%;
 
-  margin-top: 12px;
+  min-height: 48px;
 
-  padding: 15px;
+  margin-top: 11px;
 
-  border-radius: 15px;
+  border:
+    1px solid
+    #d9c8bd;
 
-  background: #ddd0c7;
+  border-radius: 14px;
 
-  color: #51443c;
+  background:
+    #f5eee9;
+
+  color: #68564d;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: .5px;
+
+  cursor: pointer;
+
+  transition: all .2s ease;
+
+}
+
+.secondary:hover {
+
+  background: #eaded6;
+
+}
+
+.secondary:active {
+
+  transform: scale(.98);
 
 }
 
 
-/* =========================
+/* =====================================================
    GALERI
-   ========================= */
+   ===================================================== */
 
 .gallery-section {
 
-  margin-top: 40px;
+  margin-top: 48px;
 
-  padding-top: 25px;
+  padding-top: 30px;
 
   border-top:
-    1px solid #dfd4cc;
+    1px solid
+    rgba(190,160,140,.4);
+
+}
+
+
+.gallery-heading {
+
+  margin-bottom: 19px;
 
 }
 
 
 .gallery-title {
 
-  font-family: Georgia, serif;
+  color: #5c473e;
 
-  font-size: 23px;
+  font-family:
+    Georgia,
+    serif;
 
-  font-weight: bold;
+  font-size: 25px;
 
-  margin-bottom: 6px;
+  font-weight: 400;
 
 }
 
 
 .gallery-subtitle {
 
-  color: #8b7e75;
+  margin-top: 7px;
+
+  color: #907d72;
 
   font-size: 13px;
-
-  margin-bottom: 18px;
 
 }
 
@@ -369,7 +712,7 @@ button:disabled {
   grid-template-columns:
     repeat(2, 1fr);
 
-  gap: 10px;
+  gap: 9px;
 
 }
 
@@ -380,11 +723,17 @@ button:disabled {
 
   overflow: hidden;
 
-  border-radius: 15px;
-
-  background: #ddd;
-
   aspect-ratio: 1 / 1;
+
+  display: block;
+
+  border-radius: 17px;
+
+  background: #ded5cf;
+
+  box-shadow:
+    0 5px 16px
+    rgba(90,65,55,.10);
 
 }
 
@@ -395,64 +744,110 @@ button:disabled {
 
   height: 100%;
 
-  object-fit: cover;
-
   display: block;
 
+  object-fit: cover;
+
   transition:
-    transform .25s;
+    transform .3s ease;
 
 }
 
 
-.gallery-item:active img {
+.gallery-item:hover img {
 
-  transform: scale(1.05);
+  transform:
+    scale(1.045);
 
 }
 
 
 .gallery-empty {
 
-  padding: 30px 15px;
+  grid-column:
+    1 / -1;
 
-  border-radius: 16px;
+  padding: 34px 15px;
 
-  background: #eee7e1;
+  border:
+    1px solid
+    #dfd1c8;
 
-  color: #857970;
+  border-radius: 17px;
 
-  font-size: 14px;
+  background:
+    rgba(255,255,255,.55);
+
+  color: #897970;
+
+  font-size: 13px;
 
 }
 
 
 .refresh-btn {
 
-  margin-top: 16px;
+  margin-top: 17px;
+
+  min-height: 43px;
 
   padding:
-    12px 20px;
+    0 20px;
+
+  border:
+    1px solid
+    #d6c4b8;
 
   border-radius: 13px;
 
-  background: #e0d4cb;
+  background:
+    transparent;
 
-  color: #51443c;
-
-}
-
-
-.small {
-
-  margin-top: 22px;
-
-  color: #968981;
+  color: #756258;
 
   font-size: 12px;
 
+  font-weight: 600;
+
+  letter-spacing: .4px;
+
+  cursor: pointer;
+
 }
 
+
+.refresh-btn:hover {
+
+  background:
+    rgba(255,255,255,.55);
+
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.small {
+
+  margin-top: 25px;
+
+  color: #a18f85;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 12px;
+
+  font-style: italic;
+
+}
+
+
+/* =====================================================
+   HIDDEN
+   ===================================================== */
 
 #uploadFrame {
 
@@ -460,13 +855,62 @@ button:disabled {
 
 }
 
-
 canvas {
 
   display: none;
 
 }
 
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 380px) {
+
+  .container {
+
+    padding-left: 12px;
+
+    padding-right: 12px;
+
+  }
+
+  h1 {
+
+    font-size: 32px;
+
+  }
+
+  .camera-switch {
+
+    gap: 6px;
+
+  }
+
+  .switch-btn {
+
+    font-size: 12px;
+
+  }
+
+}
+
+
+/* =====================================================
+   DESKTOP
+   ===================================================== */
+
+@media (min-width: 700px) {
+
+  .gallery {
+
+    grid-template-columns:
+      repeat(3, 1fr);
+
+  }
+
+}
 
 </style>
 
@@ -479,152 +923,187 @@ canvas {
 <div class="container">
 
 
-  <h1>
-    Wahyu &amp; Pasangan
-  </h1>
+  <!-- =================================================
+       HEADER
+       ================================================= -->
+
+  <header class="header">
+
+    <div class="eyebrow">
+      Wedding Guest Photo
+    </div>
+
+    <h1>
+      Wahyu &amp; Arlina
+    </h1>
+
+    <div class="subtitle">
+      Abadikan momen indah bersama kami
+    </div>
+
+    <div class="ornament">
+
+      <span class="ornament-line"></span>
+
+      <span class="ornament-heart">♡</span>
+
+      <span class="ornament-line right"></span>
+
+    </div>
+
+  </header>
 
 
-  <div class="subtitle">
-    Abadikan momen bersama kami ❤️
-  </div>
-
-
-  <!-- =========================
-       KAMERA
-       ========================= -->
+  <!-- =================================================
+       CAMERA
+       ================================================= -->
 
   <div id="cameraArea">
 
+    <div class="camera-card">
 
-    <div class="camera-box">
+      <div class="camera-box">
 
-      <video
-        id="video"
-        autoplay
-        playsinline
-        muted>
-      </video>
+        <video
+          id="video"
+          autoplay
+          playsinline
+          muted>
+        </video>
 
-    </div>
-
-
-    <div
-      id="status"
-      class="status">
-
-      Meminta izin kamera...
-
-    </div>
+      </div>
 
 
-    <div class="camera-switch">
+      <div
+        id="status"
+        class="status">
+
+        Meminta izin kamera...
+
+      </div>
+
+
+      <div class="camera-switch">
+
+        <button
+          id="frontBtn"
+          class="switch-btn">
+
+          🤳 &nbsp; Kamera Depan
+
+        </button>
+
+
+        <button
+          id="backBtn"
+          class="switch-btn">
+
+          📷 &nbsp; Kamera Belakang
+
+        </button>
+
+      </div>
+
 
       <button
-        id="frontBtn"
-        class="switch-btn">
+        id="captureBtn"
+        class="capture-btn"
+        disabled>
 
-        🤳 Kamera Depan
+        <span class="camera-icon">
+          📷
+        </span>
+
+        ABADIKAN MOMEN
 
       </button>
 
-
-      <button
-        id="backBtn"
-        class="switch-btn">
-
-        📷 Kamera Belakang
-
-      </button>
-
     </div>
-
-
-    <button
-      id="captureBtn"
-      class="capture-btn"
-      disabled>
-
-      <span>📸</span>
-      AMBIL FOTO
-
-    </button>
-
 
   </div>
 
 
-  <!-- =========================
+  <!-- =================================================
        PREVIEW
-       ========================= -->
+       ================================================= -->
 
   <div
     id="previewSection"
     class="preview-section">
 
 
-    <div class="preview-title">
+    <div class="preview-card">
 
-      🖼️ Hasil Foto Anda
+
+      <div class="preview-title">
+
+        Hasil Foto Anda
+
+      </div>
+
+
+      <div class="preview-box">
+
+        <img
+          id="previewImg"
+          alt="Hasil foto">
+
+      </div>
+
+
+      <div
+        id="uploadStatus"
+        class="upload-status">
+
+        ⏳ Mengirim foto ke galeri acara...
+
+      </div>
+
+
+      <div
+        id="success"
+        class="success">
+
+        ✓ Foto berhasil disimpan ke galeri acara ❤️
+
+      </div>
+
+
+      <button
+        id="retakeBtn"
+        class="secondary">
+
+        ↻ &nbsp; AMBIL FOTO LAGI
+
+      </button>
+
 
     </div>
-
-
-    <div class="preview-box">
-
-      <img
-        id="previewImg"
-        alt="Hasil foto">
-
-    </div>
-
-
-    <div
-      id="uploadStatus"
-      class="upload-status">
-
-      ⏳ Mengirim foto ke galeri acara...
-
-    </div>
-
-
-    <div
-      id="success"
-      class="success">
-
-      ✓ Foto berhasil disimpan ke galeri acara ❤️
-
-    </div>
-
-
-    <button
-      id="retakeBtn"
-      class="secondary">
-
-      ↻ FOTO ULANG
-
-    </button>
-
 
   </div>
 
 
-  <!-- =========================
+  <!-- =================================================
        GALERI
-       ========================= -->
+       ================================================= -->
 
-  <div class="gallery-section">
-
-
-    <div class="gallery-title">
-
-      📸 Galeri Tamu
-
-    </div>
+  <section class="gallery-section">
 
 
-    <div class="gallery-subtitle">
+    <div class="gallery-heading">
 
-      Lihat momen yang dibagikan oleh para tamu ❤️
+      <div class="gallery-title">
+
+        Galeri Tamu
+
+      </div>
+
+
+      <div class="gallery-subtitle">
+
+        Momen indah yang dibagikan oleh para tamu ❤️
+
+      </div>
 
     </div>
 
@@ -635,7 +1114,7 @@ canvas {
 
       <div class="gallery-empty">
 
-        Memuat foto tamu...
+        ⏳ Memuat foto tamu...
 
       </div>
 
@@ -646,18 +1125,18 @@ canvas {
       id="refreshGallery"
       class="refresh-btn">
 
-      🔄 Muat Ulang Galeri
+      ↻ &nbsp; MUAT ULANG GALERI
 
     </button>
 
 
-  </div>
+  </section>
 
 
   <div class="small">
 
-    Foto akan otomatis disimpan
-    ke galeri acara.
+    Terima kasih telah menjadi bagian
+    dari hari istimewa kami.
 
   </div>
 
@@ -668,9 +1147,9 @@ canvas {
 <canvas id="canvas"></canvas>
 
 
-<!-- =========================
+<!-- =====================================================
      FORM UPLOAD
-     ========================= -->
+     ===================================================== -->
 
 <iframe
   id="uploadFrame"
@@ -773,23 +1252,25 @@ APPS_SCRIPT_URL;
 
 
 /* =====================================================
-   VARIABEL
+   VARIABEL KAMERA
    ===================================================== */
 
 let stream = null;
 
-let currentCamera = "environment";
+let currentCamera =
+"environment";
 
 
 /* =====================================================
-   KAMERA
+   MULAI KAMERA
    ===================================================== */
 
 async function startCamera(cameraMode) {
 
   try {
 
-    captureBtn.disabled = true;
+    captureBtn.disabled =
+      true;
 
     statusEl.textContent =
       "Membuka kamera...";
@@ -879,8 +1360,8 @@ async function startCamera(cameraMode) {
 
       : "📷 Kamera belakang siap.";
 
-
   }
+
 
   catch (error) {
 
@@ -1005,7 +1486,7 @@ captureBtn.addEventListener(
 
 
     /*
-     * Kamera depan dibuat mirror
+     * Kamera depan mirror
      */
 
     if (
@@ -1019,7 +1500,10 @@ captureBtn.addEventListener(
         0
       );
 
-      context.scale(-1, 1);
+      context.scale(
+        -1,
+        1
+      );
 
 
       context.drawImage(
@@ -1080,7 +1564,7 @@ captureBtn.addEventListener(
 
 
     /*
-     * Upload
+     * Upload ke Google Drive
      */
 
     photoInput.value =
@@ -1102,7 +1586,9 @@ captureBtn.addEventListener(
    ===================================================== */
 
 const uploadFrame =
-document.getElementById("uploadFrame");
+document.getElementById(
+  "uploadFrame"
+);
 
 
 uploadFrame.onload =
@@ -1115,10 +1601,6 @@ function() {
   success.style.display =
     "block";
 
-
-  /*
-   * Refresh galeri setelah upload
-   */
 
   setTimeout(
     loadGallery,
@@ -1198,13 +1680,12 @@ function loadGallery() {
     '</div>';
 
 
-  /*
-   * Nama callback dibuat unik.
-   */
-
   const callbackName =
     "galleryCallback_" +
     Date.now();
+
+
+  let script;
 
 
   window[callbackName] =
@@ -1231,7 +1712,7 @@ function loadGallery() {
     };
 
 
-  const script =
+  script =
     document.createElement("script");
 
 
@@ -1360,7 +1841,7 @@ refreshGallery.addEventListener(
 
 
 /* =====================================================
-   TUTUP KAMERA
+   MATIKAN KAMERA SAAT KELUAR
    ===================================================== */
 
 window.addEventListener(
@@ -1389,10 +1870,6 @@ startCamera(
   "environment"
 );
 
-
-/*
- * Muat galeri saat halaman dibuka.
- */
 
 loadGallery();
 
